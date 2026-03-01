@@ -1,0 +1,97 @@
+* Herramientas de análisis estático de código para detección de vulnerabilidades
+En esta práctica investigaremos algunas herramientas de análisis estático de código para detección de vulnerabilidades.
+
+Utilizaremos un proyecto basado en *NodeJS*.
+
+** Recursos
+- [[https://docs.github.com/es/code-security/getting-started/dependabot-quickstart-guide][GitHub Dependabot]]
+- [[https://github.com/apps/renovate][Renovate]]
+- [[https://sonarcloud.io][SonarQube Cloud Login]]
+- [[https://docs.sonarsource.com/sonarqube-cloud/getting-started/github/][Iniciar SonarQube Cloud en GitHub]]
+- [[https://docs.npmjs.com/auditing-package-dependencies-for-security-vulnerabilities][npm audit]]
+- [[https://www.npmjs.com/package/eslint-plugin-security][eslint plugin security]]
+
+** Preparación
+Una vez aceptada la tarea, haz un *fork* del repositorio en tu cuenta de usuario. El repositorio debe ser *público*. Realiza las tareas en dicho repositorio, ya que algunas herramientas solo funcionan de manera gratuita en repositorios públicos.
+
+Los *resultados* de la práctica debes subirlos en el *repositorio privado* de la tarea. Deberás crear un fichero llamado ~resultado.md~ con la respuesta a las preguntas, junto con una carpeta ~resultado_imagenes~ donde adjuntes las capturas, convenientemente enlazadas en el archivo de respuesta.
+
+** GitHub Dependabot
+DependaBot es una herramienta proporcionada por GitHub que se encarga de realizar análisis de dependencias de código en proyectos Open Source.
+
+Accede en el repositorio público a la pestaña ~Insights~, y una vez dentro, a ~Dependency Graph~. Visualiza la lista de dependencias. Activa ~Dependabot~ en la pestaña correspondiente y visualiza de nuevo la lista de dependencias.
+
+[[./imagenes/dependabot.png]]
+
+[[./imagenes/dependencias.png]]
+
+Haz una *captura de pantalla* de las vulnerabilidades mostradas y *comenta* brevemente las vulnerabilidades que consideres que tienen más importancia.
+
+** Renovate
+~Renovate~ es una herramienta que ofrece sugerencias y Pull Requests para actualizar las dependencias de los proyectos.
+
+Accede a la página de la aplicación de [[https://github.com/apps/renovate][Renovate]] e instálala en tu cuenta. Configura el repositorio público con el código de la práctica para realizar escaneos. Observa que genera una *Pull Request* de ejemplo, y que si la aceptas, generará otras Pull Requests con *sugerencias* de actualización de paquetes.
+
+[[./imagenes/install.png]]
+
+Adjunta una *captura de pantalla* de las Pull Requests que genera el servicio de Renovate. *Comenta* brevemente en qué consisten.
+
+** ~eslint~
+Ejecuta el comando ~npm run test~ en el repositorio clonado en tu equipo. Este comando ejecutará ~eslint~, un programa de chequeo de código que incluye un plugin para detectar vulnerabilidades. Observa la salida. ¿Qué detecta? *Explica* brevemente el resultado de la ejecución.
+
+Adjunta una *captura de pantalla* del resultado.
+
+** SonarQube
+SonarQube es un servicio y una aplicación que realiza análisis estáticos de código buscando vulnerabilidades. Utilizaremos la versión Cloud gratuita que ofrece para repositorios públicos.
+
+Accede a https://sonarcloud.io/login e *inicia sesión con GitHub*.
+
+Una vez dentro, crea una nueva organización *seleccionando tu cuenta de usuario de GitHub* para ello.
+
+Concede acceso únicamente a tu *repositorio público con el código de la práctica*.
+[[./imagenes/sonarcloud.png]]
+
+Selecciona a continuación el plan gratuito y pulsa /Create Organization/:
+[[./imagenes/sonarcloud2.png]]
+
+Selecciona a continuación el repositorio y pulsa /Set Up/:
+[[./imagenes/sonarcloud3.png]]
+
+A continuación, marca /Previous Version/ y crea el proyecto:
+[[./imagenes/sonarcloud4.png]]
+
+Seguidamente, selecciona la opción *Manual* para hacer el escaneo:
+[[./imagenes/sonarcloud5.png]]
+
+
+Sigue las instrucciones según la plataforma que utilices:
+[[./imagenes/sonarcloud6.png]]
+
+Para crear *variables de entorno*, ejecuta este comando en la consola donde vayas a lanzar el programa, antes de la ejecución, sustituyendo ~TOKEN_PROPORCIONADO_EN_INSTRUCCIONES~ por el token que aparezca en tu pantalla:
+#+begin_src bash
+  export SONAR_TOKEN=TOKEN_PROPORCIONADO_EN_INSTRUCCIONES
+#+end_src
+
+A continuación, ejecuta el código proporcionado en las instrucciones. Comprobarás que la página de SonarQube Cloud se actualiza. Accede a *Issues* para ver los problemas de seguridad que ha encontrado en el código:
+[[./imagenes/sonarcloud7.png]]
+
+Haz una *captura* de los problemas encontrados. *Explica* brevemente en qué consisten. Estos problemas, ¿están en el código de la aplicación o en alguna librería externa?
+
+** ~npm audit~
+Ejecuta el comando ~npm audit~ en el repositorio clonado en tu equipo. Observa la salida.
+
+Adjunta una *captura de pantalla* del resultado y *comenta* las sugerencias que realiza.
+
+¿Cómo podrías corregir esas vulnerabilidades? *Ejecuta el comando* correspondiente para hacerlo pero *no subas los cambios al repositorio*. Haz una *captura de pantalla* del resultado del comando que corrige las vulnerabilidades. ¿Se han corregido?
+
+** Preguntas finales
+Para finalizar, contesta a las siguientes preguntas:
+- Si quisieras detectar qué librerías o dependencias son vulnerables en tu proyecto, ¿qué herramientas de las estudiadas utilizarías?
+- Si quisieras detectar vulnerabilidades en el código propio del proyecto, ¿qué herramientas de las estudiadas utilizarías?
+
+* Instrucciones de entrega
+Deberás crear un fichero llamado ~resultado.md~ con la respuesta a las preguntas, junto con una carpeta ~resultado_imagenes~ donde adjuntes las capturas, convenientemente enlazadas en el archivo de respuesta.
+
+Incluye también en ~resultado.md~ un *enlace al repositorio público* donde has hecho las pruebas.
+
+Abre un issue y nómbrame mediante ~@albertofuentes74~ al terminar.
