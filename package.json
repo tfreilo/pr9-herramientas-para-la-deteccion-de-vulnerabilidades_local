@@ -3,8 +3,8 @@
     "test": "eslint"
   },
   "dependencies": {
-    "body-parser": "1.15",
-    "express": "4.0",
+    "body-parser": "1.20",
+    "express": "4.22",
     "jsonwebtoken": "7.0",
     "mysql": "2.0"
   },
